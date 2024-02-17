@@ -3,20 +3,21 @@ class BaseRepository {
     this.collection = _collection;
   }
 
-  findAll() {
-    return this.collection.find().lean().exec();
+  async findAll() {
+    var data = await this.collection.find().lean().exec();
+    return data;
   }
 
-  findById(id) {
+  async findById(id) {
     return this.collection.findById(id);
   }
-  create(model) {
+  async create(model) {
     return this.collection.create(model);
   }
-  update(model) {
+  async update(model) {
     return this.collection.findByIdAndUpdate(model._id, model);
   }
-  deleteById(id) {
+  async deleteById(id) {
     return this.collection.findByIdAndDelete(id);
   }
 }
